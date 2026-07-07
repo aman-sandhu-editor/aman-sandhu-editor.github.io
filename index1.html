@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SpamShield AI - Premium AI-powered spam and phishing email detector utilizing state-of-the-art Machine Learning algorithms.">
+    <meta name="keywords" content="Spam Detector, AI, Machine Learning, Phishing Detection, Email Security, Flask, Tailwind, Bootstrap">
+    <title>SpamShield AI - Advanced Email Spam Detector</title>
+
+    <meta property="og:title" content="SpamShield AI - Advanced Email Spam Detector">
+    <meta property="og:description" content="Protect your inbox using Machine Learning and Artificial Intelligence. Check email security in real-time.">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/png" href="https://via.placeholder.com/32/3B82F6/FFFFFF?text=SS">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0F172A',
+                        primaryBlue: '#3B82F6',
+                        secondaryIndigo: '#6366F1',
+                        accentCyan: '#06B6D4',
+                        successGreen: '#22C55E'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-darkBg text-white antialiased overflow-x-hidden font-['Poppins']">
+
+    <nav class="navbar navbar-expand-lg fixed-top transition-all duration-300 z-50 py-4 navbar-custom">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a class="navbar-brand text-2xl font-bold tracking-wider text-white flex items-center gap-2" href="#home">
+                <i class="fa-solid font-size-lg text-primaryBlue fa-shield-halved animate-pulse"></i>
+                <span>SpamShield <span class="text-accentCyan">AI</span></span>
+            </a>
+            <button class="lg:hidden text-white focus:outline-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+            <div class="collapse navbar-collapse lg:flex lg:items-center lg:justify-between" id="navbarNav">
+                <ul class="navbar-nav mx-auto flex flex-col lg:flex-row gap-6 text-center pt-4 lg:pt-0">
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#detector">Detector</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#workflow">Workflow</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#faq">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link text-gray-300 hover:text-accentCyan transition-colors duration-200" href="#contact">Contact</a></li>
+                </ul>
+                <div class="text-center pt-4 lg:pt-0">
+                    <a href="#detector" class="btn-glow inline-block bg-gradient-to-r from-primaryBlue to-secondaryIndigo px-6 py-2.5 rounded-full font-semibold text-white tracking-wide hover:scale-105 transition-transform duration-200">Try Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(99,102,241,0.15),transparent_50%)]"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+                        AI Powered <br><span class="bg-gradient-to-r from-primaryBlue via-secondaryIndigo to-accentCyan bg-clip-text text-transparent animate-gradient">Spam Email Detector</span>
+                    </h1>
+                    <p class="text-lg text-gray-400 mb-8 max-w-xl">
+                        Protect yourself from phishing attacks and unwanted spam emails using state-of-the-art Machine Learning and Natural Language Processing Artificial Intelligence.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#detector" class="btn-glow bg-gradient-to-r from-primaryBlue to-accentCyan px-8 py-3.5 rounded-xl font-medium text-white hover:scale-105 transition-all">Detect Spam</a>
+                        <a href="#about" class="border border-gray-700 bg-slate-900/40 backdrop-blur-md px-8 py-3.5 rounded-xl font-medium text-gray-300 hover:bg-slate-800 transition-all">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 relative flex justify-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 blur-2xl opacity-30 animate-pulse"></div>
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" alt="AI Cybersecurity Visual" class="rounded-3xl shadow-2xl border border-slate-700 relative z-10 floating-shape object-cover h-[400px] w-full" lazy-load="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 relative bg-slate-950/40 border-y border-slate-800/80">
+        <div class="container mx-auto px-4">
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h3 class="text-4xl font-extrabold text-primaryBlue mb-2">10K+</h3>
+                        <p class="text-gray-400 text-sm tracking-wider uppercase font-medium">Emails Tested</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h3 class="text-4xl font-extrabold text-accentCyan mb-2">99.2%</h3>
+                        <p class="text-gray-400 text-sm tracking-wider uppercase font-medium">Model Accuracy</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h3 class="text-4xl font-extrabold text-secondaryIndigo mb-2">0.5s</h3>
+                        <p class="text-gray-400 text-sm tracking-wider uppercase font-medium">Prediction Time</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h3 class="text-4xl font-extrabold text-successGreen mb-2">24/7</h3>
+                        <p class="text-gray-400 text-sm tracking-wider uppercase font-medium">Availability</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 relative">
+        <div class="container mx-auto px-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Machine Learning Interface" class="rounded-2xl border border-slate-800 shadow-xl object-cover w-full h-[450px]" lazy-load="true">
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="h-px w-8 bg-primaryBlue"></span>
+                        <span class="text-primaryBlue uppercase tracking-widest text-sm font-semibold">Intelligence Overview</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">What is Spam Detection & Machine Learning?</h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Spam detection is the process of identifying unsolicited and unwanted messages. Modern spam detection leverages complex NLP architectures to parse unstructured textual semantics.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Our underlying Machine Learning engine analyzes features like token frequencies, semantic structures, and context metrics to differentiate genuine user communication (Ham) from adversarial attacks (Spam).
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-sm-6 flex items-center gap-3">
+                            <div class="bg-primaryBlue/10 p-2.5 rounded-lg text-primaryBlue"><i class="fa-solid fa-bolt"></i></div>
+                            <span class="font-medium text-gray-200">Real-time Isolation</span>
+                        </div>
+                        <div class="col-sm-6 flex items-center gap-3">
+                            <div class="bg-accentCyan/10 p-2.5 rounded-lg text-accentCyan"><i class="fa-solid fa-brain"></i></div>
+                            <span class="font-medium text-gray-200">Continuous Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-slate-950/20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-accentCyan uppercase tracking-widest text-sm font-semibold block mb-2">Capabilities</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Engineered with Premium Features</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-primaryBlue/10 flex items-center justify-center text-primaryBlue text-xl mb-6"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Spam Detection</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Instantly filter advertisement bundles, automated subscriptions, and junk text patterns from your feed.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-400 text-xl mb-6"><i class="fa-solid fa-user-shield"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Phishing Identification</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Identifies highly dangerous credential harvest hooks, fake domain masking, and urgent action-triggers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-accentCyan/10 flex items-center justify-center text-accentCyan text-xl mb-6"><i class="fa-solid fa-gauge-high"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Fast Processing</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Vectorized feature scaling extracts insights instantly for rapid evaluation metrics.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-secondaryIndigo/10 flex items-center justify-center text-secondaryIndigo text-xl mb-6"><i class="fa-solid fa-diagram-project"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Machine Learning</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Trained using extensive supervised datasets leveraging robust computational heuristics.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-successGreen/10 flex items-center justify-center text-successGreen text-xl mb-6"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">AI Confidence Score</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Get detailed probabilistic assessments on classified targets along with structural confidence logs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="glass-card feature-card p-8 rounded-2xl border border-slate-800 h-full transition-all duration-300">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-6"><i class="fa-solid fa-lock"></i></div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Secure Architecture</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Processes raw data endpoints structures entirely detached from permanent retention stores.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-primaryBlue uppercase tracking-widest text-sm font-semibold block mb-2">Architecture Pipeline</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Execution Steps</h2>
+            </div>
+            <div class="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-center gap-12">
+                <div class="absolute left-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-primaryBlue via-accentCyan to-transparent -translate-x-1/2 hidden md:block"></div>
+                
+                <div class="w-full flex flex-col md:flex-row items-center justify-between relative" data-aos="fade-right">
+                    <div class="w-full md:w-[45%] text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                        <h4 class="text-xl font-bold mb-2 text-white">1. Input Ingestion</h4>
+                        <p class="text-gray-400 text-sm">Paste raw message contents into our unified analytical core console interface.</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-primaryBlue flex items-center justify-center text-white font-bold order-1 z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)]">1</div>
+                    <div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+                </div>
+
+                <div class="w-full flex flex-col md:flex-row items-center justify-between relative" data-aos="fade-left">
+                    <div class="w-full md:w-[45%] order-3 md:order-1 hidden md:block"></div>
+                    <div class="w-12 h-12 rounded-full bg-accentCyan flex items-center justify-center text-white font-bold order-1 z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)]">2</div>
+                    <div class="w-full md:w-[45%] text-center md:text-left order-2 mt-4 md:mt-0">
+                        <h4 class="text-xl font-bold mb-2 text-white">2. Token Extraction</h4>
+                        <p class="text-gray-400 text-sm">Our platform processes character payloads into optimized token vectors.</p>
+                    </div>
+                </div>
+
+                <div class="w-full flex flex-col md:flex-row items-center justify-between relative" data-aos="fade-right">
+                    <div class="w-full md:w-[45%] text-center md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                        <h4 class="text-xl font-bold mb-2 text-white">3. Matrix Processing</h4>
+                        <p class="text-gray-400 text-sm">The computational model maps vectors across predictive hyperplanes.</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-secondaryIndigo flex items-center justify-center text-white font-bold order-1 z-10 shadow-[0_0_15px_rgba(99,102,241,0.5)]">3</div>
+                    <div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+                </div>
+
+                <div class="w-full flex flex-col md:flex-row items-center justify-between relative" data-aos="fade-left">
+                    <div class="w-full md:w-[45%] order-3 md:order-1 hidden md:block"></div>
+                    <div class="w-12 h-12 rounded-full bg-successGreen flex items-center justify-center text-white font-bold order-1 z-10 shadow-[0_0_15px_rgba(34,197,94,0.5)]">4</div>
+                    <div class="w-full md:w-[45%] text-center md:text-left order-2 mt-4 md:mt-0">
+                        <h4 class="text-xl font-bold mb-2 text-white">4. Output Diagnostics</h4>
+                        <p class="text-gray-400 text-sm">Review safety scores and calculated vectors instantly via the console UI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="detector" class="py-24 relative bg-slate-950/40 border-y border-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-accentCyan uppercase tracking-widest text-sm font-semibold block mb-2">Live Terminal</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Predictive AI Console</h2>
+            </div>
+            <div class="row g-5 justify-center">
+                <div class="col-xl-7 col-lg-8" data-aos="fade-up">
+                    <div class="glass-card rounded-3xl border border-slate-800 p-6 md:p-8 relative">
+                        <form id="spamForm" class="space-y-6">
+                            <div>
+                                <label for="emailInput" class="block text-sm font-semibold text-gray-300 mb-3">Target Payload Contents</label>
+                                <textarea id="emailInput" rows="8" class="w-full bg-slate-900/50 border border-slate-700/80 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:border-primaryBlue focus:ring-2 focus:ring-primaryBlue/20 transition-all duration-200 resize-none text-sm" placeholder="Paste your target raw email body or text sequence string logs here..."></textarea>
+                            </div>
+                            <div class="flex flex-wrap items-center justify-between gap-4">
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="loadSample(1)" class="text-xs bg-slate-800 hover:bg-slate-700 text-gray-300 px-3 py-2 rounded-lg border border-slate-700 transition-all">Sample Ham</button>
+                                    <button type="button" onclick="loadSample(2)" class="text-xs bg-slate-800 hover:bg-slate-700 text-gray-300 px-3 py-2 rounded-lg border border-slate-700 transition-all">Sample Spam</button>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <button type="button" onclick="clearInput()" class="bg-slate-800/80 text-gray-400 px-5 py-2.5 rounded-xl border border-slate-700 hover:bg-slate-700 hover:text-white text-sm transition-all">Clear</button>
+                                    <button type="button" onclick="simulateAnalysis()" class="btn-glow bg-gradient-to-r from-primaryBlue to-accentCyan text-white px-6 py-2.5 rounded-xl text-sm font-semibold hover:scale-105 transition-all">Analyze Payload</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="loadingState" class="hidden absolute inset-0 bg-slate-950/80 backdrop-blur-sm rounded-3xl flex flex-col items-center justify-center space-y-4 transition-all duration-300">
+                            <div class="spinner-border text-primaryBlue w-12 h-12" role="status"></div>
+                            <span class="text-sm font-medium text-gray-300 tracking-wider animate-pulse">Running Neural Inference Vectorization...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-5 col-lg-8" data-aos="fade-up" id="resultBlock">
+                    <div class="glass-card rounded-3xl border border-slate-800 p-6 md:p-8 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-white">Diagnostic Metrics</h3>
+                                <span id="statusBadge" class="text-xs bg-slate-800 border border-slate-700 text-gray-400 px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Idle</span>
+                            </div>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-400 mb-2">
+                                        <span>Spam Probability Vector</span>
+                                        <span id="spamProbText" class="font-mono text-white">0.0%</span>
+                                    </div>
+                                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                        <div id="spamBar" class="h-full bg-gradient-to-r from-red-500 to-amber-500 transition-all duration-1000 w-0"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-sm text-gray-400 mb-2">
+                                        <span>Safe Probability Vector</span>
+                                        <span id="safeProbText" class="font-mono text-white">0.0%</span>
+                                    </div>
+                                    <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+                                        <div id="safeBar" class="h-full bg-gradient-to-r from-successGreen to-emerald-400 transition-all duration-1000 w-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-6 border-t border-slate-800/80">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-xs text-gray-400 tracking-wider uppercase">Confidence Assessment</span>
+                                <span id="confidenceValue" class="text-sm font-bold font-mono text-primaryBlue">0.0%</span>
+                            </div>
+                            <div id="verdictBlock" class="p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-center">
+                                <p id="verdictText" class="text-gray-400 text-sm font-medium">Awaiting core data stream extraction pipeline execution commands.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-secondaryIndigo uppercase tracking-widest text-sm font-semibold block mb-2">Platform Merit</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Why Deploy SpamShield AI?</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800/80 h-full">
+                        <i class="fa-solid fa-bolt-lightning text-2xl text-primaryBlue mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">Ultrafast Inference</h4>
+                        <p class="text-gray-400 text-sm">Sub-second matrix evaluations return immediate real-time verdicts.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800/80 h-full">
+                        <i class="fa-solid fa-shield-halved text-2xl text-accentCyan mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">Privacy Preserved</h4>
+                        <p class="text-gray-400 text-sm">Payload blocks are parsed ephemeral inside isolated sandboxes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800/80 h-full">
+                        <i class="fa-solid fa-bullseye text-2xl text-successGreen mb-4"></i>
+                        <h4 class="text-lg font-bold mb-2">High Precision</h4>
+                        <p class="text-gray-400 text-sm">Tuned configuration profiles minimize operational false-positive drops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-950/20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-accentCyan uppercase tracking-widest text-sm font-semibold block mb-2">Validation</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Validated by Engineers</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-gray-300 text-sm italic mb-6">"Integration latency dropped sharply after swapping legacy structural regular expressions with this AI endpoint."</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-primaryBlue">AM</div>
+                            <div>
+                                <h5 class="text-sm font-bold">Alex Mercer</h5>
+                                <p class="text-xs text-gray-500">Security Architect</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-gray-300 text-sm italic mb-6">"Accuracy levels hold reliable baselines even against complex targeted spear-phishing structures."</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-accentCyan">SC</div>
+                            <div>
+                                <h5 class="text-sm font-bold">Sarah Connor</h5>
+                                <p class="text-xs text-gray-500">DevOps Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex text-amber-400 gap-1 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                            <p class="text-gray-300 text-sm italic mb-6">"Clean visual layouts paired with accessible UI endpoints make this tool highly effective for evaluating mock phishing payloads."</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-secondaryIndigo">DK</div>
+                            <div>
+                                <h5 class="text-sm font-bold">David Kim</h5>
+                                <p class="text-xs text-gray-500">ML Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-24 relative">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-primaryBlue uppercase tracking-widest text-sm font-semibold block mb-2">Knowledge Base</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
+            </div>
+            <div class="accordion accordion-flush space-y-4" id="faqAccordion" data-aos="fade-up">
+                <div class="accordion-item bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white focus:outline-none py-4 px-6 text-base font-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How does the AI classify spam messages?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-gray-400 text-sm leading-relaxed border-t border-slate-800 bg-slate-950/20 px-6 py-4">
+                            The engine analyzes structural characteristics within payloads, utilizing weighted text representations to evaluate categorical probabilities across trained classification boundaries.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white focus:outline-none py-4 px-6 text-base font-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            What is the model accuracy profile?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-gray-400 text-sm leading-relaxed border-t border-slate-800 bg-slate-950/20 px-6 py-4">
+                            Our baseline metrics achieve validation scores near 99.2% on standard open corpus benchmarks. Real-world variances depend entirely on incoming feature alignment structures.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white focus:outline-none py-4 px-6 text-base font-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Can I connect this interface to Python Flask?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-gray-400 text-sm leading-relaxed border-t border-slate-800 bg-slate-950/20 px-6 py-4">
+                            Yes. The analysis execution modules contain pre-mapped script locations making it simple to exchange mock JSON operations with standard backend Fetch API endpoints.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-slate-900/40 border border-slate-800 rounded-2xl overflow-hidden">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white focus:outline-none py-4 px-6 text-base font-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Is my raw textual content data safe?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-gray-400 text-sm leading-relaxed border-t border-slate-800 bg-slate-950/20 px-6 py-4">
+                            Absolutely. All string calculations take place explicitly memory-bound inside the volatile engine lifecycle, completely detached from persistent state logs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-slate-950/20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-accentCyan uppercase tracking-widest text-sm font-semibold block mb-2">Get In Touch</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Connect with Our Team</h2>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="glass-card p-6 md:p-8 rounded-3xl border border-slate-800 h-full">
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Full Name</label>
+                                <input type="text" class="w-full bg-slate-900/60 border border-slate-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primaryBlue transition-all" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Email Address</label>
+                                <input type="email" class="w-full bg-slate-900/60 border border-slate-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primaryBlue transition-all" placeholder="john@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Message Payload</label>
+                                <textarea rows="5" class="w-full bg-slate-900/60 border border-slate-700 rounded-xl p-3 text-white text-sm focus:outline-none focus:border-primaryBlue transition-all resize-none" placeholder="Your communication parameters..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-glow bg-gradient-to-r from-primaryBlue to-secondaryIndigo py-3 rounded-xl font-semibold text-white transition-transform duration-200">Submit Message</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-card p-4 rounded-3xl border border-slate-800 h-full flex flex-col justify-between">
+                        <div class="relative w-full h-[280px] rounded-2xl overflow-hidden border border-slate-700 mb-6">
+                            <div class="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center p-4 text-center">
+                                <i class="fa-solid fa-map-location-dot text-4xl text-primaryBlue mb-3 animate-bounce"></i>
+                                <h4 class="text-sm font-bold text-white mb-1">Global AI Operations Command</h4>
+                                <p class="text-xs text-gray-500 max-w-xs">Silicon Valley, Tech Hub Matrix Infrastructure Base 404</p>
+                            </div>
+                        </div>
+                        <div class="px-2 space-y-4 mb-2">
+                            <div class="flex items-center gap-3 text-sm text-gray-400">
+                                <i class="fa-solid fa-envelope text-primaryBlue"></i>
+                                <span>ops@spamshield.ai</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-gray-400">
+                                <i class="fa-solid fa-network-wired text-accentCyan"></i>
+                                <span>matrix.node.spamshield</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 relative">
+        <div class="container mx-auto px-4">
+            <div class="row g-4 justify-between items-center mb-8">
+                <div class="col-md-4 text-center md:text-left">
+                    <a class="text-xl font-bold tracking-wider text-white flex items-center justify-center md:justify-start gap-2" href="#home">
+                        <i class="fa-solid fa-shield-halved text-primaryBlue"></i>
+                        <span>SpamShield <span class="text-accentCyan">AI</span></span>
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">Next-Generation Predictive Pipeline Protection Models.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="flex justify-center gap-6 text-sm">
+                        <a href="#about" class="text-gray-400 hover:text-white transition-all">About</a>
+                        <a href="#features" class="text-gray-400 hover:text-white transition-all">Features</a>
+                        <a href="#detector" class="text-gray-400 hover:text-white transition-all">Detector</a>
+                        <a href="#faq" class="text-gray-400 hover:text-white transition-all">FAQ</a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center md:text-right">
+                    <div class="flex justify-center md:justify-end gap-4 text-lg">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-400 hover:text-primaryBlue hover:border-primaryBlue transition-all"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-400 hover:text-accentCyan hover:border-accentCyan transition-all"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-gray-400 hover:text-secondaryIndigo hover:border-secondaryIndigo transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-900 pt-6 text-center">
+                <p class="text-xs text-gray-600">&copy; 2026 SpamShield AI. Built for highly secure computational matrix integrity environments.</p>
+            </div>
+        </div>
+        <button id="backToTop" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-primaryBlue text-white shadow-lg flex items-center justify-center hover:scale-110 transition-all opacity-0 pointer-events-none z-50">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Scroll Animation Library
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-out'
+        });
+
+        // Sticky Bar Dynamic Coloring Modification Matrix logic
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-slate-950/90', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-slate-800/60');
+                nav.classList.remove('py-4');
+                nav.classList.add('py-2.5');
+            } else {
+                nav.classList.remove('bg-slate-950/90', 'backdrop-blur-md', 'shadow-xl', 'border-b', 'border-slate-800/60');
+                nav.classList.remove('py-2.5');
+                nav.classList.add('py-4');
+            }
+
+            // Scroll position detector for Back to Top deployment
+            const topBtn = document.getElementById('backToTop');
+            if (window.scrollY > 400) {
+                topBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                topBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+        });
+
+        // Scroll back to core apex coordinates
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Sample datasets for user demonstration routines
+        const samples = {
+            1: "Hello Team,\n\nPlease find attached the revised performance parameters logs for the Q3 application engine updates. Review the array configurations and submit comments by tomorrow noon.\n\nBest Regards,\nEngineering Management Stack",
+            2: "CONGRATULATIONS!!! Your account has won $5,000,000 cash rewards entry bonus tokens inside our processing raffle! Send account details, credentials, and full SSN information codes immediately to claim within 24 hours!!! URGENT ACT NOW CLICK HERE"
+        };
+
+        function loadSample(id) {
+            document.getElementById('emailInput').value = samples[id];
+        }
+
+        function clearInput() {
+            document.getElementById('emailInput').value = '';
+            resetMetrics();
+        }
+
+        function resetMetrics() {
+            document.getElementById('statusBadge').innerText = "Idle";
+            document.getElementById('statusBadge').className = "text-xs bg-slate-800 border border-slate-700 text-gray-400 px-3 py-1 rounded-full uppercase tracking-wider font-semibold";
+            document.getElementById('spamProbText').innerText = "0.0%";
+            document.getElementById('safeProbText').innerText = "0.0%";
+            document.getElementById('spamBar').style.width = "0%";
+            document.getElementById('safeBar').style.width = "0%";
+            document.getElementById('confidenceValue').innerText = "0.0%";
+            document.getElementById('verdictText').innerText = "Awaiting core data stream extraction pipeline execution commands.";
+            document.getElementById('verdictBlock').className = "p-4 rounded-xl bg-slate-900/50 border border-slate-800 text-center";
+        }
+
+        function simulateAnalysis() {
+            const input = document.getElementById('emailInput').value.trim();
+            if(!input) {
+                alert('Please input a valid textual payload dataset configuration first.');
+                return;
+            }
+
+            // Reveal Artificial Inference Loader Frame
+            const loader = document.getElementById('loadingState');
+            loader.classList.remove('hidden');
+
+            // Trigger Mock Inference Pipeline execution delay routines
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                
+                // Read text metrics to simulate responsive spam classification
+                const standardPayloadText = input.toLowerCase();
+                const containingAdversarialKeywords = standardPayloadText.includes('congratulations') || standardPayloadText.includes('won') || standardPayloadText.includes('click here') || standardPayloadText.includes('urgent') || standardPayloadText.includes('money');
+
+                let spamProb, safeProb, confidence, status, badgeClass, verdict, blockClass;
+
+                if (containingAdversarialKeywords) {
+                    spamProb = (Math.random() * (99.8 - 88.5) + 88.5).toFixed(1);
+                    safeProb = (100 - spamProb).toFixed(1);
+                    confidence = (Math.random() * (98.5 - 92.0) + 92.0).toFixed(1);
+                    status = "Spam Target Flagged";
+                    badgeClass = "text-xs bg-red-500/10 border border-red-500/30 text-red-400 px-3 py-1 rounded-full uppercase tracking-wider font-semibold";
+                    verdict = `Warning: High malicious operational pattern arrays match flagged metrics. Model isolates this text package as hazardous.`;
+                    blockClass = "p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-center text-red-200 text-xs md:text-sm";
+                } else {
+                    safeProb = (Math.random() * (99.5 - 85.0) + 85.0).toFixed(1);
+                    spamProb = (100 - safeProb).toFixed(1);
+                    confidence = (Math.random() * (96.5 - 90.0) + 90.0).toFixed(1);
+                    status = "Clear Signature Verified";
+                    badgeClass = "text-xs bg-successGreen/10 border border-successGreen/30 text-successGreen px-3 py-1 rounded-full uppercase tracking-wider font-semibold";
+                    verdict = "Payload metrics indicate a low risk of malicious spam patterns. Safe to process down-line pipelines.";
+                    blockClass = "p-4 rounded-xl bg-successGreen/10 border border-successGreen/20 text-center text-successGreen text-xs md:text-sm";
+                }
+
+                // Render metrics logs updates to Document Tree Elements
+                document.getElementById('statusBadge').innerText = status;
+                document.getElementById('statusBadge').className = badgeClass;
+                document.getElementById('spamProbText').innerText = `${spamProb}%`;
+                document.getElementById('safeProbText').innerText = `${safeProb}%`;
+                document.getElementById('spamBar').style.width = `${spamProb}%`;
+                document.getElementById('safeBar').style.width = `${safeProb}%`;
+                document.getElementById('confidenceValue').innerText = `${confidence}%`;
+                document.getElementById('verdictText').innerText = verdict;
+                document.getElementById('verdictBlock').className = blockClass;
+
+            }, 1200);
+        }
+    </script>
+</body>
+</html>
+/* --------------------------------------------------
+ * Custom Dark Theme Style Matrix Override Document
+ * System Identity: SpamShield AI Premium UI Sheet
+ * -------------------------------------------------- */
+
+/* Base Layer Custom Animations */
+@keyframes fluidGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes shapeFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Core Element Implementations */
+html {
+    scroll-behavior: smooth;
+    background-color: #0F172A;
+}
+
+body {
+    background-color: #0F172A;
+    color: #FFFFFF;
+}
+
+/* Premium Glassmorphic Cards Styling */
+.glass-card {
+    background: rgba(30, 41, 59, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s ease;
+}
+
+/* Card Interaction Lifting States */
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(59, 130, 246, 0.4) !important;
+    box-shadow: 0 12px 40px -10px rgba(59, 130, 246, 0.25);
+}
+
+/* Specialized Custom Button Inner Glow States */
+.btn-glow {
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 20px 4px rgba(6, 182, 212, 0.35);
+}
+
+/* Interactive Floating Shape Frameworks */
+.floating-shape {
+    animation: shapeFloat 6s ease-in-out infinite;
+}
+
+/* Dynamic Text Gradient Animation Classes */
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: fluidGradient 5s ease infinite;
+}
+
+/* Bootstrap Accordion Custom Deep Override Layers */
+.accordion-button:not(.collapsed) {
+    color: #06B6D4 !important;
+    background-color: rgba(30, 41, 59, 0.2) !important;
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2306B6D4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+}
+
+/* Unified Custom Input Focus Mechanics */
+input:focus, textarea:focus {
+    box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.15) !important;
+    border-color: #3B82F6 !important;
+}
+
+/* Horizontal Scrollbar Prevention */
+body, html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar Aesthetic Controls */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0F172A;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3B82F6;
+}
